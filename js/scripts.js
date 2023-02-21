@@ -17,3 +17,32 @@ let pokemon3 = {
 
 //create array filled with the pokemon objects
 let pokemonList = [pokemon1, pokemon2, pokemon3];
+
+//write list of pokemon and their heights in the DOM, and highlight bigger pokemons
+let pokemonListString = "";
+let i = 0;
+for (; pokemonList[i]; ) {
+  if (pokemonList[i].height > 3) {
+    pokemonListString =
+      pokemonListString +
+      " " +
+      pokemonList[i].name +
+      "(height " +
+      pokemonList[i].height +
+      ")" +
+      " - wow that's big!" +
+      "<br>";
+  } else {
+    pokemonListString =
+      pokemonListString +
+      " " +
+      pokemonList[i].name +
+      "(height " +
+      pokemonList[i].height +
+      ")" +
+      "<br>";
+  }
+  i++;
+}
+
+document.write(pokemonListString);
