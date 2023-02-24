@@ -18,28 +18,18 @@ let pokemonList = [
 ];
 
 //write list of pokemon and their heights in the DOM, and highlight bigger pokemons
-let pokemonListString = "";
-for (let i = 0; i < pokemonList.length; i++) {
-  if (pokemonList[i].height > 3) {
-    pokemonListString =
-      pokemonListString +
-      " " +
-      pokemonList[i].name +
-      "(height " +
-      pokemonList[i].height +
-      ")" +
-      " - wow that's big!" +
-      "<br>";
-  } else {
-    pokemonListString =
-      pokemonListString +
-      " " +
-      pokemonList[i].name +
-      "(height " +
-      pokemonList[i].height +
-      ")" +
-      "<br>";
-  }
-}
 
-document.write(pokemonListString);
+pokemonList.forEach(function (pokemon) {
+  if (pokemon.height > 3) {
+    document.write(
+      pokemon.name +
+        "(height " +
+        pokemon.height +
+        ")" +
+        " - wow that's big!" +
+        "<br>"
+    );
+  } else {
+    document.write(pokemon.name + "(height " + pokemon.height + ")" + "<br>");
+  }
+});
