@@ -18,7 +18,6 @@ let pokemonRepository = (function () {
     },
   ];
 
-
   function getAll() {
     return pokemonList;
   }
@@ -33,32 +32,10 @@ let pokemonRepository = (function () {
   };
 })();
 
-//document.write(pokemonRepository.getAll());
 //write list of pokemon and their heights in the DOM, and highlight bigger pokemons
+let pokemonListReturned = pokemonRepository.getAll();
 
-pokemonList.getAll.forEach (function(pokemon){
-
-if (pokemon.height > 3) {
-    document.write(
-      pokemon.name +
-        "(height " +
-        pokemon.height +
-        ")" +
-        " - wow that's big!" +
-        "<br>"
-    );
-  } else {
-    document.write(pokemon.name + "(height " + pokemon.height + ")" + "<br>");
-  }
-});
-
-/*function getAll(){
-    pokemonList.forEach(pokemon){
-        document.write(pokemon.name + "(height " + pokemon.height + ")" + "<br>")
-    };
-}
-
-/*pokemonList.forEach(function (pokemon) {
+pokemonListReturned.forEach(function (pokemon) {
   if (pokemon.height > 3) {
     document.write(
       pokemon.name +
