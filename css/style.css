@@ -1,0 +1,55 @@
+/* colors*/
+:root {
+  --primary-color: #a8a8a8;
+  --secondary-color: #ffcb05;
+  --background-color: #565656;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.button-class {
+  /* overwrites browser defaults and resets the border */
+  border: none;
+  /* remember to add font when I set for whole site; font-family: inherit; */
+
+  /* styles the background color, font color, and text decoration (underline, etc.) of the button */
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  /*adds spacing to the button (this will be discussed more in-depth later) */
+  padding: 10px;
+  border-radius: 3px;
+  /* gives the button a bottom border with a width of 2px, a type of solid, and a color in RGBA format */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  transition-duration: 0.2s;
+  transition-property: opacity;
+}
+
+.button-class:hover,
+.button-class:focus {
+  /* lets the mouse appear as a hand when hovering over the button */
+  cursor: pointer;
+  /* reduces the opacity of the button to 80% */
+  opacity: 0.8;
+}
+
+.pokemon-list {
+  list-style-type: none;
+}
+
+/*list container styling*/
+.container {
+  max-width: 200px;
+  margin: 20px auto;
+  background-color: var(--primary-color);
+  padding: 5px;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.7);
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  color: var(--secondary-color);
+}
