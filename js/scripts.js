@@ -27,15 +27,8 @@ let pokemonRepository = (function () {
   }
 
   function showDetails(pokemon) {
-    console.log(pokemonList[pokemon]);
+    console.log(pokemon);
   }
-
-  return {
-    add: add,
-    getAll: getAll,
-    addListItem: addListItem,
-    showDetails: showDetails,
-  };
 
   function addListItem(pokemon) {
     let pokemonListItems = document.querySelector(".pokemon-list");
@@ -50,6 +43,13 @@ let pokemonRepository = (function () {
       showDetails(pokemon);
     });
   }
+
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem,
+    showDetails: showDetails,
+  };
 })();
 
 //write list of pokemon and their heights in the DOM, and highlight bigger pokemons
