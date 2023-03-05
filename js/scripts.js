@@ -11,11 +11,14 @@ let pokemonRepository = (function () {
     pokemonList.push(pokemon);
   }
 
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      console.log(pokemon);
-    });
-  }
+  // function showDetails(pokemon) {
+  //   loadDetails(pokemon).then(function () {
+  //     showModal();
+  //     //create modal to display pokemon details (name, height, img and types) to user when clicked
+
+  //     //console.log(pokemon);
+  //   });
+  // }
 
   function addListItem(pokemon) {
     let pokemonListItems = document.querySelector(".pokemon-list");
@@ -27,10 +30,12 @@ let pokemonRepository = (function () {
     pokemonListItems.appendChild(listItem);
     //log pokemon details when clicked
     button.addEventListener("click", function (event) {
-      showDetails(pokemon);
+      showModal();
     });
+    //showDetails(pokemon);
   }
 
+  //fetch name and url from api, and push pokemon to pokemonList
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -67,13 +72,20 @@ let pokemonRepository = (function () {
       });
   }
 
+  // add class when clicked to make modal visible
+  function showModal() {
+    let modalContainer = document.querySelector("#modal-container");
+    modalContainer.classList.add("is-visible");
+  }
+
   return {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    showDetails: showDetails,
+    // showDetails: showDetails,
     loadList: loadList,
-    loadDetails: loadDetails,
+    // loadDetails: loadDetails,
+    showModal: showModal,
   };
 })();
 
