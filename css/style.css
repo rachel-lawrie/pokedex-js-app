@@ -20,10 +20,13 @@ body {
 }
 
 /* Modal styling */
+/*default hide modal container*/
 #modal-container {
   display: none;
 }
 
+/*modal container visible when "is-visible" class is added*/
+/*for some reason this is not overwriting the #modal-container rule above to display none even though it should...*/
 #modal-container.is-visible {
   position: fixed;
   padding: 20px;
