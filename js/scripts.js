@@ -19,11 +19,12 @@ let pokemonRepository = (function () {
         var types = pokemon.types[i];
         for (var i = 0; i < pokemon.types.length; i++) {
           typesarray.push(i);
-          console.log(typesarray);
         }
+        console.log(typesarray);
       }
 
       let details = "height: " + pokemon.height + "\r\n" + "types: ";
+      // if I can get the typesarray to populate then not sure how to call it in the line above since it is created in a function above so will be undefined.
       let imagelink = pokemon.imageUrl;
       showModal(pokemon.name, details, imagelink);
       // want to make image appear rather than URL
