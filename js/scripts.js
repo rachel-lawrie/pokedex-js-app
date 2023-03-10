@@ -14,18 +14,12 @@ let pokemonRepository = (function () {
   //create modal to display pokemon details (name, height, img and types) to user when clicked
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      let details = "height: " + pokemon.height + "\r\n" + "types: ";
+      let types = pokemon.types.map((type) => type.type.name).join(",");
+      let details = "height: " + pokemon.height + "\r\n" + "types: " + types;
       // if I can get the typesarray to populate then not sure how to call it in the line above since it is created in a function above so will be undefined.
       let imagelink = pokemon.imageUrl;
-      let typesList = function populateTypes(pokemon) {
-        let typesarray = [];
-        var typesP = pokemon.types[i];
-        for (var i = 0; i < pokemon.types.length; i++) {
-          typesarray.push(typesP);
-        }
-        return typesarray;
-      };
-      showModal(pokemon.name, details, imagelink, typesList);
+
+      showModal(pokemon.name, details, imagelink);
       // want to make image appear rather than URL
       // also want to include the types
 
@@ -88,7 +82,7 @@ let pokemonRepository = (function () {
   }
 
   // add class when clicked to make modal visible
-  function showModal(title, text, imagelink, typesList) {
+  function showModal(title, text, imagelink) {
     let modalContainer = document.querySelector("#modal-container");
 
     modalContainer.innerHTML = "";
@@ -112,10 +106,6 @@ let pokemonRepository = (function () {
     let contentElement = document.createElement("p");
     contentElement.innerText = text;
 
-    let contentElementTypes = document.createElement("p");
-    contentElementTypes.innerText = typesList;
-
-    modal.appendChild(contentElementTypes);
     modal.appendChild(pokemonImage);
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
