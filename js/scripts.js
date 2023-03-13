@@ -16,26 +16,21 @@ let pokemonRepository = (function () {
     loadDetails(pokemon).then(function () {
       let types = pokemon.types.map((type) => type.type.name).join(",");
       let details = "height: " + pokemon.height + "\r\n" + "types: " + types;
-      // if I can get the typesarray to populate then not sure how to call it in the line above since it is created in a function above so will be undefined.
       let imagelink = pokemon.imageUrl;
 
       showModal(pokemon.name, details, imagelink);
-      // want to make image appear rather than URL
-      // also want to include the types
-
-      //old code that console logged the pokemon details
-      // function showDetails(pokemon) {
-      //   loadDetails(pokemon).then(function () {
-      // console.log(pokemon);
     });
   }
 
   function addListItem(pokemon) {
     let pokemonListItems = document.querySelector(".pokemon-list");
     let listItem = document.createElement("li");
+    listItem.classList.add("list-group-item");
     let button = document.createElement("button");
     button.innerText = pokemon.name;
-    button.classList.add("button-class");
+    button.classList.add("btn", "btn-dark");
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#modalContainer");
     listItem.appendChild(button);
     pokemonListItems.appendChild(listItem);
     //log pokemon details when clicked
@@ -71,7 +66,7 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (details) {
-        // Now we add the details to the item
+        // add the details to the item
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
         item.types = details.types;
@@ -83,57 +78,24 @@ let pokemonRepository = (function () {
 
   // add class when clicked to make modal visible
   function showModal(title, text, imagelink) {
-    let modalContainer = document.querySelector("#modal-container");
+    let modalContainer = document.querySelector("#modalContainer");
 
-    modalContainer.innerHTML = "";
+    //add title
+    let modalTitle = document.querySelector(".modal-title");
+    modalTitle.innerHTML = "";
+    modalTitle.innerHTML = title;
 
-    //add content
-    let modal = document.createElement("div");
-    modal.classList.add("modal");
-    // add image
+    //add body content
+    let modalBody = document.querySelector(".modal-body");
+    modalBody.innerHTML = text;
+
+    //add image
     let pokemonImage = document.createElement("img");
     pokemonImage.setAttribute("id", "pokemon-image");
     pokemonImage.src = imagelink;
-    //add close button
-    let closeButtonElement = document.createElement("button");
-    closeButtonElement.classList.add("modal-close");
-    closeButtonElement.innerText = "X";
-    closeButtonElement.addEventListener("click", hideModal);
 
-    let titleElement = document.createElement("h1");
-    titleElement.innerText = title;
-
-    let contentElement = document.createElement("p");
-    contentElement.innerText = text;
-
-    modal.appendChild(pokemonImage);
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
-    modalContainer.appendChild(modal);
-
-    modalContainer.classList.add("is-visible");
-
-    modalContainer.addEventListener("click", (e) => {
-      // close modal if user clicks outside of modal (on modalContainer)
-      let target = e.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
-    });
+    modalBody.appendChild(pokemonImage);
   }
-
-  function hideModal() {
-    let modalContainer = document.querySelector("#modal-container");
-    modalContainer.classList.remove("is-visible");
-  }
-
-  window.addEventListener("keydown", (e) => {
-    let modalContainer = document.querySelector("#modal-container");
-    if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
-      hideModal();
-    }
-  });
 
   return {
     add: add,
@@ -145,11 +107,8 @@ let pokemonRepository = (function () {
   };
 })();
 
-//write list of pokemon and their heights in the DOM, and highlight bigger pokemons
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
 });
-
-// pokemonRepository.showModal();
