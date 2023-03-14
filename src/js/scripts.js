@@ -14,11 +14,7 @@ let pokemonRepository = (function () {
   //create modal to display pokemon details (name, height, img and types) to user when clicked
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      let types = pokemon.types.map((type) => type.type.name).join(",");
-      let details = "height: " + pokemon.height + "\r\n" + "types: " + types;
-      let imagelink = pokemon.imageUrl;
-
-      showModal(pokemon.name, details, imagelink);
+      showModal(pokemon);
     });
   }
 
@@ -77,24 +73,24 @@ let pokemonRepository = (function () {
   }
 
   // add class when clicked to make modal visible
-  function showModal(title, text, imagelink) {
-    let modalContainer = document.querySelector("#modalContainer");
-
+  function showModal(pokemon) {
     //add title
-    let modalTitle = document.querySelector(".modal-title");
-    modalTitle.innerHTML = "";
-    modalTitle.innerHTML = title;
+    let modalTitle = $(".modal-title");
+    modalTitle.empty();
+    modalTitle.append(pokemon.name);
 
     //add body content
-    let modalBody = document.querySelector(".modal-body");
-    modalBody.innerHTML = text;
+    let bodyContent = $(".body-content");
+    bodyContent.empty();
 
-    //add image
-    let pokemonImage = document.createElement("img");
-    pokemonImage.setAttribute("id", "pokemon-image");
-    pokemonImage.src = imagelink;
-
-    modalBody.appendChild(pokemonImage);
+    let types = pokemon.types.map((type) => type.type.name).join(", ");
+    bodyContent.append(
+      `<img class="pokemon-image col-6" src = ${pokemon.imageUrl}>`
+    );
+    bodyContent.append(`<div class= "modal-details" col-6></div>`);
+    let modalDetails = $(".modal-details");
+    modalDetails.append(`<p>Height : ${pokemon.height}</p>`);
+    modalDetails.append(`<p>Types : ${types}</p>`);
   }
 
   return {
