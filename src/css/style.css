@@ -43,19 +43,3 @@ body {
   margin-top: 20px;
   color: black;
 }
-
-/* #modalContainer {
-  position: fixed;
-  z-index: 999;
-  display: grid;
-  text-align: center;
-} */
-/*When I comment in the above it breaks the code, and I don't get why the below is not working when it worked in previous version of the app w/ out bootstrap*/
-
-.modal-dialog {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
