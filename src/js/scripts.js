@@ -87,7 +87,7 @@ let pokemonRepository = (function () {
     bodyContent.append(
       `<img class="pokemon-image col-6" src = ${pokemon.imageUrl}>`
     );
-    bodyContent.append(`<div class= "modal-details" col-6></div>`);
+    bodyContent.append(`<div class= "modal-details my-auto" col-6></div>`);
     let modalDetails = $(".modal-details");
     modalDetails.append(`<p>Height : ${pokemon.height}</p>`);
     modalDetails.append(`<p>Types : ${types}</p>`);
