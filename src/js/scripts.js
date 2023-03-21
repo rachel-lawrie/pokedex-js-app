@@ -30,7 +30,7 @@ let pokemonRepository = (function () {
     listItem.appendChild(button);
     pokemonListItems.appendChild(listItem);
     //log pokemon details when clicked
-    button.addEventListener("click", function (event) {
+    button.addEventListener("click", function () {
       showDetails(pokemon);
     });
   }
@@ -87,7 +87,7 @@ let pokemonRepository = (function () {
     bodyContent.append(
       `<img class="pokemon-image col-6" src = ${pokemon.imageUrl}>`
     );
-    bodyContent.append(`<div class= "modal-details my-auto" col-6></div>`);
+    bodyContent.append("<div class= 'modal-details my-auto' col-6></div>");
     let modalDetails = $(".modal-details");
     modalDetails.append(`<p>Height : ${pokemon.height}</p>`);
     modalDetails.append(`<p>Types : ${types}</p>`);
