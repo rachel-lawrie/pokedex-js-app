@@ -108,3 +108,65 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+//create logic for search bar
+
+const searchInput = document.getElementById("myInput");
+const list = document.querySelector(".pokemon-list");
+
+searchInput.addEventListener("input", function () {
+  const searchTerm = searchInput.value.toLowerCase();
+  list.innerHTML = "";
+  // iterate through the list items and check if their text content matches the search term
+  pokemonRepository
+    .getAll()
+    .filter(
+      (pokemon) =>
+        pokemon.name.toLowerCase().indexOf(searchTerm) > -1 ||
+        pokemon.type.toLowerCase().indexOf(searchTerm) > -1
+    )
+    .forEach(function (pokemon) {
+      pokemonRepository.addListItem(pokemon);
+    });
+
+  // for (let i = 0; i < list.children.length; i++) {
+  //   const item = list.children[i];
+
+  //   if (item.textContent.toLowerCase().indexOf(searchTerm) > -1) {
+  //     item.style.display = "block";
+  //   } else {
+  //     item.style.display = "none";
+  //   }
+  // }
+});
+
+// function searchFunction() {
+//   var items, filter;
+//   items = document.getElementsByClassName("list-group-item");
+//   filter = input.value;
+//   for (i = 0; i < items.length; i++) {
+//     a = items[i];
+//     txtValue = a.textContent || a.innerText;
+//     if (txtValue.indexOf(filter) > -1) {
+//       items[i].style.display = "";
+//     } else {
+//       items[i].style.display = "none";
+//     }
+//   }
+// }
+
+// var input, filter, ul, li, a, i, txtValue;
+// input = document.getElementById("myInput");
+// filter = input.value.toLowerCase();
+// ul = document.getElementById("pokemon-list");
+// li = ul.getElementsByTagName("li");
+
+// for (i = 0; i < li.length; i++) {
+//   a = li[i].getElementsByTagName("a")[0];
+//   txtValue = a.textContent || a.innerText;
+//   if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//     li[i].style.display = "";
+//   } else {
+//     li[i].style.display = "none";
+//   }
+// }

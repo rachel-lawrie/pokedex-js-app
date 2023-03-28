@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="dist/css/style.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
@@ -58,6 +58,16 @@
       src="https://fontmeme.com/permalink/230302/af0cca64561d561530179da19df00134.png"
       alt="pokemon-font"
     />
+
+    <div class="searchContainer">
+      <input
+        type="text"
+        id="myInput"
+        placeholder="Search pokemon or attributes..."
+      />
+    </div>
+
+    <!-- container for list of pokemon-->
     <div class="container">
       <ul class="pokemon-list list-group"></ul>
     </div>
@@ -105,6 +115,6 @@
     ></script>
     <script src="dist/js/promise-polyfill.min.js"></script>
     <script src="dist/js/fetch-polyfill.min.js"></script>
-    <script src="dist/js/scripts.min.js"></script>
+    <script src="js/scripts.js"></script>
   </body>
 </html>
